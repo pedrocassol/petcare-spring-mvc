@@ -22,7 +22,7 @@ public class Proprietario {
     private String email;
 
     @NotBlank(message = "Informe o endereço.")
-    @Size(max = 255, message = "O endereço deve ter no máximo 255 caracteres.")
+    @Size(max = 200, message = "O endereço deve ter no máximo 200 caracteres.")
     private String endereco;
 
     public Proprietario() {

@@ -36,7 +36,7 @@ public class Consulta {
     private BigDecimal valorEstimado;
 
     @NotBlank(message = "Informe o status.")
-    @Size(max = 20, message = "O status deve ter no máximo 20 caracteres.")
+    @Size(max = 30, message = "O status deve ter no máximo 30 caracteres.")
     private String status;
 
     @Size(max = 500, message = "As observações devem ter no máximo 500 caracteres.")

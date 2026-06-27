@@ -18,7 +18,7 @@ public class Pet {
     @Size(max = 50, message = "A espécie deve ter no máximo 50 caracteres.")
     private String especie;
 
-    @Size(max = 100, message = "A raça deve ter no máximo 100 caracteres.")
+    @Size(max = 50, message = "A raça deve ter no máximo 50 caracteres.")
     private String raca;
 
     @PositiveOrZero(message = "A idade não pode ser negativa.")
