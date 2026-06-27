@@ -1,0 +1,207 @@
+body {
+    background-color: #F7FAFD;
+    font-family: Arial, sans-serif;
+}
+
+.content {
+    margin-left: 260px;
+    min-height: 100vh;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 34px;
+    background-color: white;
+    border-bottom: 1px solid #D8E1E8;
+}
+
+.page-header h1 {
+    color: #006184;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.user-greeting {
+    color: #4F6073;
+    font-size: 14px;
+}
+
+.reports-body {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 42px 32px 56px;
+}
+
+.reports-intro {
+    margin-bottom: 28px;
+}
+
+.reports-intro h2 {
+    color: #1F2A33;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.reports-intro p {
+    color: #4F6073;
+    margin: 0;
+}
+
+.reports-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.report-card,
+.filter-card,
+.reports-table-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 18px rgba(79, 96, 115, 0.10);
+}
+
+.report-card {
+    min-height: 108px;
+    padding: 22px;
+}
+
+.report-card span {
+    display: block;
+    color: #4F6073;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.report-card strong {
+    color: #1F2A33;
+    font-size: 28px;
+    line-height: 1;
+}
+
+.filter-card {
+    padding: 26px 34px;
+    margin-bottom: 28px;
+}
+
+.period-filter {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.period-label {
+    color: #1F2A33;
+    font-weight: 700;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.period-separator {
+    color: #4F6073;
+    white-space: nowrap;
+}
+
+.period-input {
+    width: 160px;
+    border-color: #C9D4DE;
+    border-radius: 7px;
+    padding: 10px 12px;
+}
+
+.period-button {
+    min-width: 180px;
+    margin-left: auto;
+    padding: 11px 18px;
+}
+
+.form-label {
+    color: #1F2A33;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.form-select {
+    border-color: #C9D4DE;
+    border-radius: 7px;
+    padding: 10px 12px;
+}
+
+.btn-primary {
+    background-color: #007BA7;
+    border-color: #007BA7;
+    font-weight: 700;
+}
+
+.btn-primary:hover {
+    background-color: #006184;
+    border-color: #006184;
+}
+
+.reports-table-card {
+    overflow: hidden;
+}
+
+.table-title {
+    padding: 16px 20px;
+    color: #1F2A33;
+    font-weight: 700;
+    border-bottom: 1px solid #D8E1E8;
+}
+
+.reports-table-card table {
+    font-size: 13px;
+}
+
+.reports-table-card th {
+    color: #4F6073;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.status-pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.status-done {
+    color: #0F7A36;
+    background-color: #DFF6E8;
+}
+
+.status-scheduled {
+    color: #8A6500;
+    background-color: #FFF1C7;
+}
+
+@media (max-width: 1000px) {
+    .reports-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .reports-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .period-filter {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .period-input,
+    .period-button {
+        width: 100%;
+        margin-left: 0;
+    }
+}

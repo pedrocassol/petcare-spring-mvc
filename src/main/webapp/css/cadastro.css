@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.bg-light-custom {
+    background-color: #F7FAFD;
+}
+
+.box-cadastro {
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #EAEFEF;
+    border-radius: 12px;
+}
+
+.petcare-title {
+    color: #4F6073;
+    font-weight: 700;
+}
+
+.petcare-link {
+    color: #4F6073;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.petcare-link:hover {
+    color: #007BA7;
+}
+
+.form-control {
+    padding: 10px 15px;
+    color: #4F6073;
+    border-color: #D1D9E0;
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    border-color: #007BA7;
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 167, 0.15);
+}
+
+.btn-petcare {
+    background-color: #007BA7;
+    color: white;
+    padding: 10px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-petcare:hover, .btn-petcare:focus, .btn-petcare:active {
+    background-color: #006184 !important;
+    color: white !important;
+}

@@ -1,0 +1,110 @@
+body {
+    background-color: #F7FAFD;
+    font-family: Arial, sans-serif;
+}
+
+.content {
+    margin-left: 260px;
+    min-height: 100vh;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 34px;
+    background-color: white;
+    border-bottom: 1px solid #D8E1E8;
+}
+
+.page-header h1 {
+    color: #006184;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.user-greeting {
+    color: #4F6073;
+    font-size: 14px;
+}
+
+.page-body {
+    padding: 32px 40px 48px;
+}
+
+.top-buttons .btn {
+    min-width: 180px;
+    border-radius: 6px;
+    font-weight: bold;
+    padding: 10px 18px;
+}
+
+.consultation-card {
+    max-width: 880px;
+    margin: 32px auto 0;
+    border: 1px solid #D1D9E0;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.list-card {
+    width: 100%;
+    max-width: 1120px;
+}
+
+.required-note {
+    color: #B00020;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.section-title {
+    color: #4F6073;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.form-label {
+    color: #1F2A33;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.required {
+    color: #B00020;
+}
+
+.form-control,
+.form-select {
+    border-color: #C9D4DE;
+    border-radius: 7px;
+    padding: 12px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #007BA7;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 167, 0.15);
+}
+
+.btn-primary {
+    background-color: #007BA7;
+    border-color: #007BA7;
+}
+
+.btn-primary:hover {
+    background-color: #006184;
+    border-color: #006184;
+}
+
+.btn-outline-primary {
+    color: #007BA7;
+    border-color: #007BA7;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007BA7;
+    border-color: #007BA7;
+    color: white;
+}
