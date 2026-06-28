@@ -31,6 +31,12 @@
 
     <div class="dashboard-body">
 
+        <c:if test="${not empty erro}">
+            <div class="alert alert-danger" role="alert">
+                ${erro}
+            </div>
+        </c:if>
+
         <div class="dashboard-intro">
 
             <div>

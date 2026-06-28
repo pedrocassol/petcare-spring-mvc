@@ -15,7 +15,7 @@ public final class ConexaoDB {
     public static Connection getConexao() throws SQLException {
         String url = obterConfiguracao("petcare.db.url", "PETCARE_DB_URL", URL_PADRAO);
         String usuario = obterConfiguracao("petcare.db.user", "PETCARE_DB_USER", USUARIO_PADRAO);
-        String senha = obterConfiguracao("petcare.db.password", "PETCARE_DB_PASSWORD", "");
+        String senha = obterConfiguracao("petcare.db.password", "PETCARE_DB_PASSWORD", "1234");
 
         return DriverManager.getConnection(url, usuario, senha);
     }
