@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page isELIgnored="false" %>
 
@@ -30,6 +32,20 @@
 
     <div class="page-body">
 
+        <c:if test="${not empty erro}">
+            <div class="alert alert-danger" role="alert">${erro}</div>
+        </c:if>
+
+        <c:if test="${not empty erros}">
+            <div class="alert alert-danger" role="alert">
+                <ul class="mb-0">
+                    <c:forEach var="item" items="${erros}">
+                        <li>${item.defaultMessage}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:if>
+
         <div class="consultation-card p-4 shadow-sm">
 
             <div class="d-flex justify-content-end mb-2">
@@ -46,12 +62,14 @@
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Nome <span class="required">*</span></label>
-                        <input type="text" name="nome" class="form-control" value="${proprietario.nome}" required>
+                        <input type="text" name="nome" class="form-control"
+                               value="${fn:escapeXml(proprietario.nome)}" maxlength="100" required>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Telefone <span class="required">*</span></label>
-                        <input type="text" name="telefone" class="form-control" value="${proprietario.telefone}" required>
+                        <input type="text" name="telefone" class="form-control"
+                               value="${fn:escapeXml(proprietario.telefone)}" maxlength="20" required>
                     </div>
 
                 </div>
@@ -60,12 +78,14 @@
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">E-mail <span class="required">*</span></label>
-                        <input type="email" name="email" class="form-control" value="${proprietario.email}" required>
+                        <input type="email" name="email" class="form-control"
+                               value="${fn:escapeXml(proprietario.email)}" maxlength="100" required>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Endereço <span class="required">*</span></label>
-                        <input type="text" name="endereco" class="form-control" value="${proprietario.endereco}" required>
+                        <input type="text" name="endereco" class="form-control"
+                               value="${fn:escapeXml(proprietario.endereco)}" maxlength="200" required>
                     </div>
 
                 </div>
