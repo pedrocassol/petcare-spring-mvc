@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page isELIgnored="false" %>
 
@@ -31,6 +32,20 @@
 
     <div class="page-body">
 
+        <c:if test="${not empty erro}">
+            <div class="alert alert-danger" role="alert">${erro}</div>
+        </c:if>
+
+        <c:if test="${not empty erros}">
+            <div class="alert alert-danger" role="alert">
+                <ul class="mb-0">
+                    <c:forEach var="item" items="${erros}">
+                        <li>${item.defaultMessage}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:if>
+
         <div class="consultation-card p-4 shadow-sm">
 
             <form action="${pageContext.request.contextPath}/editarConsulta" method="post" accept-charset="UTF-8">
@@ -43,7 +58,7 @@
                     <select name="idPet" class="form-select" required>
                         <c:forEach var="p" items="${pets}">
                             <option value="${p.id}" ${p.id == consulta.idPet ? 'selected' : ''}>
-                                    ${p.nome} - ${p.nomeProprietario}
+                                    ${fn:escapeXml(p.nome)} - ${fn:escapeXml(p.nomeProprietario)}
                             </option>
                         </c:forEach>
                     </select>
@@ -75,7 +90,8 @@
 
                 <div class="mb-3">
                     <label class="form-label">Descrição da Consulta / Motivo <span class="required">*</span></label>
-                    <textarea name="descricao" rows="4" class="form-control" required>${consulta.descricao}</textarea>
+                    <textarea name="descricao" rows="4" class="form-control" maxlength="500"
+                              required>${fn:escapeXml(consulta.descricao)}</textarea>
                 </div>
 
                 <div class="row">
@@ -90,7 +106,8 @@
 
                         <div class="d-flex align-items-center gap-4 pt-2">
                             <label>
-                                <input type="radio" name="status" value="Agendada"${consulta.status == 'Agendada' ? 'checked' : ''}>Agendada
+                                <input type="radio" name="status" value="Agendada"
+                                       ${consulta.status == 'Agendada' ? 'checked' : ''} required>Agendada
                             </label>
 
                             <label>
@@ -103,7 +120,8 @@
 
                 <div class="mb-4">
                     <label class="form-label">Observações Adicionais</label>
-                    <textarea name="observacoes" rows="3" class="form-control">${consulta.observacoes}</textarea>
+                    <textarea name="observacoes" rows="3" class="form-control"
+                              maxlength="500">${fn:escapeXml(consulta.observacoes)}</textarea>
                 </div>
 
                 <hr>

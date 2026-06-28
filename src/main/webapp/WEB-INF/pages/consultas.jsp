@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page isELIgnored="false" %>
 
@@ -39,6 +40,20 @@
 
         </div>
 
+        <c:if test="${not empty erro}">
+            <div class="alert alert-danger mt-3" role="alert">${erro}</div>
+        </c:if>
+
+        <c:if test="${not empty erros}">
+            <div class="alert alert-danger mt-3" role="alert">
+                <ul class="mb-0">
+                    <c:forEach var="item" items="${erros}">
+                        <li>${item.defaultMessage}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:if>
+
         <div class="consultation-card p-4 shadow-sm">
 
             <div class="d-flex justify-content-end mb-2">
@@ -54,8 +69,8 @@
                         <option value="">Selecione o pet</option>
 
                         <c:forEach var="p" items="${pets}">
-                            <option value="${p.id}">
-                                    ${p.nome} - ${p.nomeProprietario}
+                            <option value="${p.id}" ${p.id == consulta.idPet ? 'selected' : ''}>
+                                    ${fn:escapeXml(p.nome)} - ${fn:escapeXml(p.nomeProprietario)}
                             </option>
                         </c:forEach>
                     </select>
@@ -65,16 +80,17 @@
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Data e Hora: <span class="required">*</span></label>
-                        <input type="datetime-local" name="dataHora" class="form-control" required>
+                        <input type="datetime-local" name="dataHora" class="form-control"
+                               value="${consulta.dataHora}" required>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Veterinário Responsável: <span class="required">*</span></label>
                         <select name="veterinario" class="form-select" required>
                             <option value="">Selecione o veterinário</option>
-                            <option value="Dra. Mariana">Dra. Mariana</option>
-                            <option value="Dr. Lucas">Dr. Lucas</option>
-                            <option value="Dra. Camila">Dra. Camila</option>
+                            <option value="Dra. Mariana" ${consulta.veterinario == 'Dra. Mariana' ? 'selected' : ''}>Dra. Mariana</option>
+                            <option value="Dr. Lucas" ${consulta.veterinario == 'Dr. Lucas' ? 'selected' : ''}>Dr. Lucas</option>
+                            <option value="Dra. Camila" ${consulta.veterinario == 'Dra. Camila' ? 'selected' : ''}>Dra. Camila</option>
                         </select>
                     </div>
 
@@ -82,14 +98,16 @@
 
                 <div class="mb-3">
                     <label class="form-label">Descrição da Consulta / Motivo: <span class="required">*</span></label>
-                    <textarea name="descricao" rows="4" class="form-control" placeholder="Descreva os sintomas ou motivo da visita..." required></textarea>
+                    <textarea name="descricao" rows="4" class="form-control" maxlength="500"
+                              placeholder="Descreva os sintomas ou motivo da visita..." required>${fn:escapeXml(consulta.descricao)}</textarea>
                 </div>
 
                 <div class="row">
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Valor Estimado (R$): <span class="required">*</span></label>
-                        <input type="number" name="valorEstimado" class="form-control" min="0" step="0.01" placeholder="0.00" required>
+                        <input type="number" name="valorEstimado" class="form-control" min="0" step="0.01"
+                               value="${consulta.valorEstimado}" placeholder="0.00" required>
                     </div>
 
                     <div class="col-md-6 mb-3">
@@ -97,11 +115,13 @@
 
                         <div class="d-flex align-items-center gap-4 pt-2">
                             <label>
-                                <input type="radio" name="status" value="Agendada" checked>Agendada
+                                <input type="radio" name="status" value="Agendada"
+                                       ${empty consulta.status || consulta.status == 'Agendada' ? 'checked' : ''} required>Agendada
                             </label>
 
                             <label>
-                                <input type="radio" name="status" value="Realizada">Realizada
+                                <input type="radio" name="status" value="Realizada"
+                                       ${consulta.status == 'Realizada' ? 'checked' : ''}>Realizada
                             </label>
                         </div>
                     </div>
@@ -110,7 +130,8 @@
 
                 <div class="mb-4">
                     <label class="form-label">Observações Adicionais:</label>
-                    <textarea name="observacoes" rows="3" class="form-control" placeholder="Notas..."></textarea>
+                    <textarea name="observacoes" rows="3" class="form-control" maxlength="500"
+                              placeholder="Notas...">${fn:escapeXml(consulta.observacoes)}</textarea>
                 </div>
 
                 <hr>
