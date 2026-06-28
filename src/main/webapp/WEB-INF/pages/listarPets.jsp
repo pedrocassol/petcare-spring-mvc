@@ -39,6 +39,14 @@
 
         </div>
 
+        <c:if test="${not empty erro}">
+            <div class="alert alert-danger mt-3 mb-3" role="alert">${erro}</div>
+        </c:if>
+
+        <c:if test="${not empty sucesso}">
+            <div class="alert alert-success mt-3 mb-3" role="alert">${sucesso}</div>
+        </c:if>
+
         <div class="consultation-card list-card p-4 shadow-sm">
 
             <table class="table table-hover align-middle mb-0">

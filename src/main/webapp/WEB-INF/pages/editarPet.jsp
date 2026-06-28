@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page isELIgnored="false" %>
 
@@ -31,6 +32,20 @@
 
     <div class="page-body">
 
+        <c:if test="${not empty erro}">
+            <div class="alert alert-danger" role="alert">${erro}</div>
+        </c:if>
+
+        <c:if test="${not empty erros}">
+            <div class="alert alert-danger" role="alert">
+                <ul class="mb-0">
+                    <c:forEach var="item" items="${erros}">
+                        <li>${item.defaultMessage}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:if>
+
         <div class="consultation-card p-4 shadow-sm">
 
             <div class="d-flex justify-content-end mb-2">
@@ -47,7 +62,8 @@
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Nome do animal <span class="required">*</span></label>
-                        <input type="text" name="nome" class="form-control" value="${pet.nome}" required>
+                        <input type="text" name="nome" class="form-control"
+                               value="${fn:escapeXml(pet.nome)}" maxlength="100" required>
                     </div>
 
                     <div class="col-md-6 mb-3">
@@ -68,12 +84,13 @@
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Raça</label>
-                        <input type="text" name="raca" class="form-control" value="${pet.raca}">
+                        <input type="text" name="raca" class="form-control"
+                               value="${fn:escapeXml(pet.raca)}" maxlength="50">
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Idade</label>
-                        <input type="number" name="idade" class="form-control" value="${pet.idade}">
+                        <input type="number" name="idade" class="form-control" value="${pet.idade}" min="0">
                     </div>
 
                 </div>
@@ -82,10 +99,10 @@
                     <label class="form-label">Sexo</label>
                     <div class="d-flex align-items-center gap-4 pt-2">
                         <label>
-                            <input type="radio" name="sexo" value="Macho"${pet.sexo == 'Macho' ? 'checked' : ''}>Macho
+                            <input type="radio" name="sexo" value="Macho" ${pet.sexo == 'Macho' ? 'checked' : ''} required>Macho
                         </label>
                         <label>
-                            <input type="radio" name="sexo" value="Fêmea"${pet.sexo == 'Fêmea' ? 'checked' : ''}>Fêmea
+                            <input type="radio" name="sexo" value="Fêmea" ${pet.sexo == 'Fêmea' ? 'checked' : ''}>Fêmea
                         </label>
                     </div>
                 </div>
@@ -101,7 +118,7 @@
                         <select name="idProprietario" class="form-select" required>
                             <c:forEach var="p" items="${proprietarios}">
                                 <option value="${p.id}" ${p.id == pet.idProprietario ? 'selected' : ''}>
-                                        ${p.nome}
+                                        ${fn:escapeXml(p.nome)}
                                 </option>
                             </c:forEach>
                         </select>
@@ -111,7 +128,8 @@
 
                 <div class="mb-4">
                     <label class="form-label">Observações</label>
-                    <textarea name="observacoes" rows="4" class="form-control">${pet.observacoes}</textarea>
+                    <textarea name="observacoes" rows="4" class="form-control"
+                              maxlength="500">${fn:escapeXml(pet.observacoes)}</textarea>
                 </div>
 
                 <hr>
