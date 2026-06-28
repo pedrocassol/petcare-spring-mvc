@@ -32,6 +32,10 @@
 
     <div class="reports-body">
 
+        <c:if test="${not empty erro}">
+            <div class="alert alert-danger" role="alert">${erro}</div>
+        </c:if>
+
         <div class="reports-intro">
             <div>
                 <h2>Resumo Geral</h2>
@@ -45,11 +49,13 @@
 
                 <label class="period-label">Período:</label>
 
-                <input type="date" name="dataInicio" class="form-control period-input" value="${dataInicio}">
+                <input type="date" name="dataInicio" class="form-control period-input"
+                       value="${fn:escapeXml(dataInicio)}">
 
                 <span class="period-separator">até</span>
 
-                <input type="date" name="dataFim" class="form-control period-input" value="${dataFim}">
+                <input type="date" name="dataFim" class="form-control period-input"
+                       value="${fn:escapeXml(dataFim)}">
 
                 <button type="submit" class="btn btn-primary period-button">Aplicar Filtros</button>
 
