@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 
 <html>
 <head>
@@ -21,15 +22,18 @@
 
     <form action="${pageContext.request.contextPath}/usuario" method="post" accept-charset="UTF-8">
         <div class="mb-3">
-            <input type="text" name="nome" class="form-control" placeholder="Nome" required>
+            <input type="text" name="nome" class="form-control" placeholder="Nome"
+                   value="${fn:escapeXml(usuario.nome)}" maxlength="100" autocomplete="name" required>
         </div>
 
         <div class="mb-3">
-            <input type="email" name="email" class="form-control" placeholder="E-mail" required>
+            <input type="email" name="email" class="form-control" placeholder="E-mail"
+                   value="${fn:escapeXml(usuario.email)}" maxlength="100" autocomplete="email" required>
         </div>
 
         <div class="mb-4">
-            <input type="password" name="senha" class="form-control" placeholder="Senha" required>
+            <input type="password" name="senha" class="form-control" placeholder="Senha"
+                   minlength="6" maxlength="100" autocomplete="new-password" required>
         </div>
 
         <button type="submit" class="btn btn-petcare w-100">Cadastrar</button>
@@ -38,6 +42,22 @@
     <div class="text-center mt-3">
         <a href="${pageContext.request.contextPath}/login" class="text-decoration-none petcare-link">Voltar</a>
     </div>
+
+    <c:if test="${not empty erro}">
+        <div class="alert alert-danger mt-3 mb-0 text-center p-2" role="alert" style="font-size: 14px;">
+                ${erro}
+        </div>
+    </c:if>
+
+    <c:if test="${not empty erros}">
+        <div class="alert alert-danger mt-3 mb-0 p-2" role="alert" style="font-size: 14px;">
+            <ul class="mb-0">
+                <c:forEach var="erroValidacao" items="${erros}">
+                    <li>${erroValidacao.defaultMessage}</li>
+                </c:forEach>
+            </ul>
+        </div>
+    </c:if>
 
 </div>
 

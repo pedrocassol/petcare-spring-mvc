@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 
 <html>
 <head>
@@ -21,10 +22,12 @@
 
     <form action="${pageContext.request.contextPath}/login" method="post" accept-charset="UTF-8">
         <div class="mb-3">
-            <input type="email" name="email" class="form-control" placeholder="E-mail" required>
+            <input type="email" name="email" class="form-control" placeholder="E-mail"
+                   value="${fn:escapeXml(email)}" maxlength="100" autocomplete="email" required>
         </div>
         <div class="mb-4">
-            <input type="password" name="senha" class="form-control" placeholder="Senha" required>
+            <input type="password" name="senha" class="form-control" placeholder="Senha"
+                   maxlength="100" autocomplete="current-password" required>
         </div>
         <button type="submit" class="btn btn-petcare w-100">Entrar</button>
     </form>
@@ -36,6 +39,12 @@
     <c:if test="${not empty erro}">
         <div class="alert alert-danger mt-3 mb-0 text-center p-2" role="alert" style="font-size: 14px;">
                 ${erro}
+        </div>
+    </c:if>
+
+    <c:if test="${not empty sucesso}">
+        <div class="alert alert-success mt-3 mb-0 text-center p-2" role="alert" style="font-size: 14px;">
+                ${sucesso}
         </div>
     </c:if>
 </div>
